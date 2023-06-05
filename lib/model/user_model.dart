@@ -14,5 +14,3 @@ class UserModel {
       this.userDistrict,
       this.userDivision});
 }
-
-class Check {}
