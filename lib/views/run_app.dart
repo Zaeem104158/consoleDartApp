@@ -5,7 +5,7 @@ import 'package:main/utilits/const.dart';
 void runApp() {
   UserController userController = UserController();
   StudentController studentController = StudentController();
-  for (int appSection = 0; appSection <= 3; appSection++) {
+  for (int appSection = 0; appSection <= 1; appSection++) {
     String? selectOptionNumber = inputData(
         title:
             "Enter your options: Type following numbers\n********** [1]: Add User **********\n********** [2]: Display User **********\n********** [3]: Find User **********\n********** [4]: Student Section **********\n**********[0]: Exit App**********\n");
@@ -19,7 +19,9 @@ void runApp() {
         userController.district = inputData(title: "Enter your district: ");
         userController.division = inputData(title: "Enter your division: ");
 
-        userController.addUser();
+        userController.addUser(
+          email: userController.email,
+        );
         if (userController.userList.isEmpty) {
           i--;
         } else {

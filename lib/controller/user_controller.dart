@@ -43,24 +43,36 @@ class UserController implements Creation, PasswordException {
   }
 
   @override
-  List<UserModel> addUser() {
+  List<UserModel> addUser({String? email}) {
     bool authenticatedUser = authenticate(
       email: email,
       password: password,
     );
+    // ! if authenticate then user will added.
     if (authenticatedUser) {
-      userList.addAll([
-        UserModel(
-            userEmail: email,
-            userPassword: password,
-            userAddress: address,
-            userThana: thana,
-            userDistrict: district,
-            userDivision: division)
-      ]);
+      bool hasUser = false;
+      userList.forEach((element) {
+        if (element.userEmail == email) {
+          hasUser = true;
+        } else {
+          hasUser = false;
+        }
+      });
+      !hasUser
+          ? userList.addAll([
+              UserModel(
+                  userEmail: email,
+                  userPassword: password,
+                  userAddress: address,
+                  userThana: thana,
+                  userDistrict: district,
+                  userDivision: division)
+            ])
+          : print("Already added user");
     } else {
       userList = [];
     }
+    print(userList.length);
     return userList;
   }
 
